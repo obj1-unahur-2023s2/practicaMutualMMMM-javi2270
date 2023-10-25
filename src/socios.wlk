@@ -1,0 +1,6 @@
+import viajes.*
+
+class Socio {
+	
+	
+}
