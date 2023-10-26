@@ -1,3 +1,5 @@
+import socios.*
+
 class Viaje {
 	const idiomas = #{}
 	    
@@ -8,7 +10,10 @@ class Viaje {
 		idiomas.addAll(conjDeIdiomas)
 	}
 	method esInteresante() = idiomas.size() > 1
-	
+	method idiomas() = idiomas.asList()
+	method esRecomendada(unSocio){
+		return self.esInteresante() && unSocio.leAtraeActividad(self) && !unSocio.actividadYaRealizada(self)
+	}
 }
 
 class ViajeDePlaya inherits Viaje {
@@ -56,6 +61,7 @@ class ClaseDeGimnasia inherits Viaje {
 	override method diasDeViaje() = 1
 	override method implicaEsfuerzo() = true
 	override method sirveParaBroncearse() = false
+	override method esRecomendada(unSocio) = unSocio.edad().between(20,30)
 }
 
 

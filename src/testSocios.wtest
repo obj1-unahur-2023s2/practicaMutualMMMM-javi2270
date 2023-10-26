@@ -1,0 +1,48 @@
+import socios.*
+import viajes.*
+
+describe 'Roque, un socio que hizo 2 viajes a la playa, con longitudes de 1000 y 2000 metros respectivamente,
+		  y que tiene un máximo de 2 actividades.' {
+	const roque = new SocioTranquilo(edad=56,maximoDeActividades=2) 	
+	const playa = new ViajeDePlaya(largoDePlaya=1000)
+	const playa2 = new ViajeDePlaya(largoDePlaya=2000)
+	const claseGym = new ClaseDeGimnasia()			 
+	
+	test 'Roque esAdoradorDelSol() devuelve true.'{
+		roque.registrarActividad(playa)
+		roque.registrarActividad(playa2)
+		assert.that(roque.esAdoradorDelSol())
+	}
+	test 'Roque devuelve una colección que tiene solamente el viaje de 2000 metros de playa.' {
+		roque.registrarActividad(playa)
+		roque.registrarActividad(playa2)
+		assert.equals([playa2],roque.actividadesEsforzadas())
+	}
+	test 'Si registramos que Roque realiza una clase de gimnasia, se debe generar un error.' {
+		roque.registrarActividad(playa)
+		roque.registrarActividad(playa2)
+		assert.throwsException({roque.registrarActividad(claseGym)})
+	}
+}	
+	
+describe 'Ana hizo dos viajes iguales a los que hizo Roque, pero tiene un máximo de 3 actividades.' {
+	
+	const ana = new SocioCoherente(edad=45,maximoDeActividades=3) 
+	const playa = new ViajeDePlaya(largoDePlaya=1000)
+	const playa2 = new ViajeDePlaya(largoDePlaya=2000)
+	const claseGym = new ClaseDeGimnasia()
+	
+	test 'Después de registrar la clase de gym obtenemos que Ana ya no es adoradora del sol,' {
+		ana.registrarActividad(playa)
+		ana.registrarActividad(playa2)
+		ana.registrarActividad(claseGym)
+		assert.notThat(ana.esAdoradorDelSol())
+	}
+	test 'Su colección de actividades esforzadas incluye al viaje de 2000 metros de playa y a la clase.' {
+		ana.registrarActividad(playa)
+		ana.registrarActividad(playa2)
+		ana.registrarActividad(claseGym)
+		assert.equals([playa2,claseGym],ana.actividadesEsforzadas())
+	}	
+}
+
