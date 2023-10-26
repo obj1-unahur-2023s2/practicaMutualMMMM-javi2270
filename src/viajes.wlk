@@ -55,16 +55,39 @@ class SalidaDeTrekking  inherits Viaje {
 
 class ClaseDeGimnasia inherits Viaje {
 	
-	method idioma() {
-		self.agregarIdiomas(#{'Español'})
-	}
+	override method idiomas() = #{'Español'}
 	override method diasDeViaje() = 1
 	override method implicaEsfuerzo() = true
 	override method sirveParaBroncearse() = false
 	override method esRecomendada(unSocio) = unSocio.edad().between(20,30)
 }
 
+class TallerLiterario inherits Viaje {
+	const libros = []
+	
+	method idiomasUsados() = libros.map({l => l.idioma()})
+	
+	override method diasDeViaje() = libros.size() + 1
+	override method implicaEsfuerzo() = libros.any({l => l.cantPaginas() > 500})
+	override method sirveParaBroncearse() = false
+	
+	method hayMasDeUnLibro() = libros.size() > 1
+	method todosDelMismoAutor() {
+		if (!self.hayMasDeUnLibro()) {
+			self.error('Debe haber mas de un libro.')
+		}
+		return libros.all({l => l.nombreDelAutor() == l.nombreDelAutor()})
+	}
+	
+	override method esRecomendada(unSocio) = unSocio.idiomasQueHabla() > 1
+}
 
+class Libros {
+	const property idioma
+	const property cantPaginas
+	const property nombreDelAutor
+	
+}
 
 
 
