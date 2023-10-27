@@ -4,14 +4,14 @@ describe 'Viajes de Playa'{
 	test 'Un viaje a una playa que tiene d largo 1000 mts, leva 2 dias, no implica esfuerzo y como es de
 		  playa siempre sirve para broncearse.'{
 		const playa1 = new ViajeDePlaya(largoDePlaya=1000)	
-		assert.equals(2, playa1.diasDeViaje())
+		assert.equals(2, playa1.diasDeActividad())
 		assert.notThat(playa1.implicaEsfuerzo())
 		assert.that(playa1.sirveParaBroncearse())
 	}
 	test 'Un viaje a una playa que tiene d largo 2000 mts, leva 4 dias,implica esfuerzo y como es de
 		  playa siempre sirve para broncearse.'{
 		const playa2 = new ViajeDePlaya(largoDePlaya=2000)	
-		assert.equals(4, playa2.diasDeViaje())
+		assert.equals(4, playa2.diasDeActividad())
 		assert.that(playa2.implicaEsfuerzo())
 		assert.that(playa2.sirveParaBroncearse())
 	}
@@ -21,35 +21,35 @@ describe 'Ciudad y Ciudad Tropical' {
 	test 'una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, lleva 2 días, no implica esfuerzo,
 		  y no sirve para broncearse.'{
 		const excu = new ExcurcionACiudad(atraccionesAVisitar=4)
-		assert.equals(2, excu.diasDeViaje())
+		assert.equals(2, excu.diasDeActividad())
 		assert.notThat(excu.implicaEsfuerzo())
 		assert.notThat(excu.sirveParaBroncearse())
 	}
 	test 'una excursión a ciudad tropical en la que se visitan 4 atracciones, lleva 3 días, no implica esfuerzo, y sí sirve 
 		  para broncearse.' {
 		const excuTrop = new ExcurcionACiudadTropical(atraccionesAVisitar=4)
-		assert.equals(3, excuTrop.diasDeViaje())
+		assert.equals(3, excuTrop.diasDeActividad())
 		assert.notThat(excuTrop.implicaEsfuerzo())
 		assert.that(excuTrop.sirveParaBroncearse())	  	
 	}
 	test 'una excursión a ciudad normal (no tropical) en la que se visitan 8 atracciones, lleva 4 días, implica esfuerzo, 
 		  y no sirve para broncearse.'{
 		const excu2 = new ExcurcionACiudad(atraccionesAVisitar=8)
-		assert.equals(4, excu2.diasDeViaje())
+		assert.equals(4, excu2.diasDeActividad())
 		assert.that(excu2.implicaEsfuerzo())
 		assert.notThat(excu2.sirveParaBroncearse())	  	
 	}
 	test 'una excursión a ciudad tropical en la que se visitan 8 atracciones, lleva 5 días, implica esfuerzo, y sirve para 
 		  broncearse.'{
 		const excuTrop2 = new ExcurcionACiudadTropical(atraccionesAVisitar=8)
-		assert.equals(5, excuTrop2.diasDeViaje())
+		assert.equals(5, excuTrop2.diasDeActividad())
 		assert.that(excuTrop2.implicaEsfuerzo())
 		assert.that(excuTrop2.sirveParaBroncearse())
 	}
 	test 'una excursión a ciudad tropical en la que se visitan 10 atracciones, lleva 6 días, no implica esfuerzo, y sí sirve para 
 		  broncearse.'{
 		const excuTrop3 = new ExcurcionACiudadTropical(atraccionesAVisitar=10)
-		assert.equals(6, excuTrop3.diasDeViaje())
+		assert.equals(6, excuTrop3.diasDeActividad())
 		assert.notThat(excuTrop3.implicaEsfuerzo())
 		assert.that(excuTrop3.sirveParaBroncearse())
 	}
@@ -58,21 +58,21 @@ describe 'Salida de Trekking'{
 	test 'una salida de 100 kilómetros a un lugar con 130 días de sol por año: lleva 2 días, implica esfuerzo, 
 		  y no sirve para broncearse.'{
 		const salTrekk = new SalidaDeTrekking(kilometrosARecorrer=100,diasDeSol=130)
-		assert.equals(2, salTrekk.diasDeViaje())
+		assert.equals(2, salTrekk.diasDeActividad())
 		assert.that(salTrekk.implicaEsfuerzo())
 		assert.notThat(salTrekk.sirveParaBroncearse())	
 	}
 	test 'una salida de 50 kilómetros a un lugar con 240 días de sol por año: lleva 1 día, no implica esfuerzo,
 		  y sí sirve para broncearse.'{
 		const salTrekk2 = new SalidaDeTrekking(kilometrosARecorrer=50,diasDeSol=240)
-		assert.equals(1, salTrekk2.diasDeViaje())
+		assert.equals(1, salTrekk2.diasDeActividad())
 		assert.notThat(salTrekk2.implicaEsfuerzo())
 		assert.that(salTrekk2.sirveParaBroncearse())		  	
 	}
 	test 'una salida de 250 kilómetros a un lugar con 130 días de sol por año: lleva 5 días, implica esfuerzo,
 		  y sirve para broncearse.'{
 		const salTrekk3 = new SalidaDeTrekking(kilometrosARecorrer=250,diasDeSol=130)
-		assert.equals(5, salTrekk3.diasDeViaje())
+		assert.equals(5, salTrekk3.diasDeActividad())
 		assert.that(salTrekk3.implicaEsfuerzo())
 		assert.that(salTrekk3.sirveParaBroncearse())		  	
 		

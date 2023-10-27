@@ -1,9 +1,9 @@
 import socios.*
 
-class Viaje {
+class Actividad {
 	const idiomas = #{}
 	    
-	method diasDeViaje()
+	method diasDeActividad()
 	method implicaEsfuerzo()
 	method sirveParaBroncearse()
 	method agregarIdiomas(conjDeIdiomas) {
@@ -16,18 +16,18 @@ class Viaje {
 	}
 }
 
-class ViajeDePlaya inherits Viaje {
+class ViajeDePlaya inherits Actividad {
 	const largoDePlaya
 	
-	override method diasDeViaje() = largoDePlaya / 500
+	override method diasDeActividad() = largoDePlaya / 500
 	override method implicaEsfuerzo() = largoDePlaya > 1200
 	override method sirveParaBroncearse() = true
 }
 
-class ExcurcionACiudad inherits Viaje {
+class ExcurcionACiudad inherits Actividad {
 	const atraccionesAVisitar
 	
-	override method diasDeViaje() = atraccionesAVisitar / 2
+	override method diasDeActividad() = atraccionesAVisitar / 2
 	override method implicaEsfuerzo() = atraccionesAVisitar.between(5,8)
 	override method sirveParaBroncearse() = false
 	override method esInteresante() = super() || atraccionesAVisitar == 5
@@ -35,16 +35,16 @@ class ExcurcionACiudad inherits Viaje {
 
 class ExcurcionACiudadTropical inherits ExcurcionACiudad {
 	
-	override method diasDeViaje() = super() + 1
+	override method diasDeActividad() = super() + 1
 	override method sirveParaBroncearse() = true
 	
 }
 
-class SalidaDeTrekking  inherits Viaje {
+class SalidaDeTrekking  inherits Actividad {
 	const kilometrosARecorrer
 	const diasDeSol
 	
-	override method diasDeViaje() = kilometrosARecorrer / 50
+	override method diasDeActividad() = kilometrosARecorrer / 50
 	override method implicaEsfuerzo() = kilometrosARecorrer > 80
 	override method sirveParaBroncearse() {
 		return (diasDeSol > 200) || (diasDeSol.between(100,200) && kilometrosARecorrer > 120)
@@ -53,21 +53,21 @@ class SalidaDeTrekking  inherits Viaje {
 	
 }
 
-class ClaseDeGimnasia inherits Viaje {
+class ClaseDeGimnasia inherits Actividad {
 	
 	override method idiomas() = #{'Español'}
-	override method diasDeViaje() = 1
+	override method diasDeActividad() = 1
 	override method implicaEsfuerzo() = true
 	override method sirveParaBroncearse() = false
 	override method esRecomendada(unSocio) = unSocio.edad().between(20,30)
 }
 
-class TallerLiterario inherits Viaje {
+class TallerLiterario inherits Actividad {
 	const libros = []
 	
 	method idiomasUsados() = libros.map({l => l.idioma()})
 	
-	override method diasDeViaje() = libros.size() + 1
+	override method diasDeActividad() = libros.size() + 1
 	override method implicaEsfuerzo() = libros.any({l => l.cantPaginas() > 500})
 	override method sirveParaBroncearse() = false
 	

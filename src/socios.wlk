@@ -22,7 +22,7 @@ class Socio {
 
 class SocioTranquilo inherits Socio {
 	
-	override method leAtraeActividad(unaActividad) = unaActividad.diasDeViaje() >= 4
+	override method leAtraeActividad(unaActividad) = unaActividad.diasDeActividad() >= 4
 }
 
 class SocioCoherente inherits Socio {
